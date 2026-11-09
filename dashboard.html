@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Grana Alinhada — Visão geral
+    </title>
+
+
+    <!-- FONTES -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
+
+
+    <!-- GARANTE O FUNCIONAMENTO DAS SEÇÕES -->
+
+    <style>
+
+        .page-section.hidden {
+            display: none !important;
+        }
+
+        .page-section {
+            width: 100%;
+        }
+
+
+
+        /* ==============================
+           RELATÓRIOS
+        ============================== */
+
+        .report-subtitle {
+            margin-top: 8px;
+            max-width: 620px;
+            opacity: 0.65;
+        }
+
+        .report-filter-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 160px;
+        }
+
+        .report-filter-wrap label {
+            font-size: 12px;
+            opacity: 0.55;
+        }
+
+        .report-period {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            color: inherit;
+            outline: none;
+        }
+
+        .report-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .report-summary-card {
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .report-summary-card span {
+            display: block;
+            font-size: 13px;
+            opacity: 0.65;
+        }
+
+        .report-summary-card strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .report-summary-card small {
+            display: block;
+            margin-top: 7px;
+            opacity: 0.45;
+            font-size: 12px;
+        }
+
+        .report-content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+            gap: 16px;
+        }
+
+        .report-chart-panel,
+        .report-insight-panel {
+            min-width: 0;
+        }
+
+        .report-legend {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0 22px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .report-legend span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .legend-dot.income {
+            background: #6ee7b7;
+        }
+
+        .legend-dot.expense {
+            background: #fb7185;
+        }
+
+        .monthly-report {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .report-month {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .report-month-label {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.55;
+        }
+
+        .report-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .report-bar-row {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr) 100px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .report-bar-name {
+            font-size: 11px;
+            opacity: 0.55;
+        }
+
+        .report-track {
+            height: 9px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.07);
+        }
+
+        .report-fill {
+            height: 100%;
+            min-width: 2px;
+            border-radius: 20px;
+            transition: width 0.45s ease;
+        }
+
+        .report-fill.income {
+            background: #6ee7b7;
+        }
+
+        .report-fill.expense {
+            background: #fb7185;
+        }
+
+        .report-bar-value {
+            text-align: right;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .report-insight-panel h2 {
+            margin-top: 8px;
+        }
+
+        .report-insight-panel > p {
+            margin-top: 10px;
+            line-height: 1.6;
+            opacity: 0.65;
+        }
+
+        .report-stat {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .report-stat span {
+            display: block;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        .report-stat strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 17px;
+        }
+
+        @media (max-width: 900px) {
+            .report-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .report-summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .report-bar-row {
+                grid-template-columns: 58px minmax(0, 1fr) 86px;
+            }
+
+            .report-bar-value {
+                font-size: 11px;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+            }
+
+            .report-filter-wrap {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="brand">
+
+            <span class="brand-mark">
+                G
+            </span>
+
+            <span>
+                GRANA ALINHADA
+            </span>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav>
+
+
+            <a
+                class="nav-item active"
+                href="#"
+                data-section="visao-geral"
+            >
+                Visão geral
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+                data-section="movimentacoes"
+            >
+                Movimentações
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+                data-section="categorias"
+            >
+                Categorias
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+                data-section="relatorios"
+            >
+                Relatórios
+            </a>
+
+
+        </nav>
+
+
+        <!-- USUÁRIO -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="mini-user">
+
+
+                <div
+                    class="avatar"
+                    id="avatar"
+                >
+                    G
+                </div>
+
+
+                <div>
+
+                    <strong id="sideName">
+                        Usuário
+                    </strong>
+
+                    <small>
+                        Minha conta
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SAIR -->
+
+            <button
+                id="logoutBtn"
+                class="logout"
+            >
+                Sair
+
+                <span>
+                    ↗
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main class="main">
+
+
+        <!-- ==================================================
+             VISÃO GERAL
+        ================================================== -->
+
+        <section
+            id="visao-geral"
+            class="page-section"
+        >
+
+
+            <!-- HEADER -->
+
+            <header class="topbar">
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        VISÃO GERAL
+                    </span>
+
+
+                    <h1>
+
+                        Olá,
+
+                        <span id="firstName">
+                            você
+                        </span>.
+
+                    </h1>
+
+
+                </div>
+
+
+                <button
+                    id="openModal"
+                    class="add-btn"
+                >
+
+                    + Nova movimentação
+
+                </button>
+
+
+            </header>
+
+
+
+            <!-- ==================================================
+                 RESUMO
+            ================================================== -->
+
+            <section class="summary-grid">
+
+
+                <!-- SALDO -->
+
+                <article class="summary-card balance">
+
+
+                    <div class="card-top">
+
+                        <span>
+                            Saldo atual
+                        </span>
+
+                        <span class="dot"></span>
+
+                    </div>
+
+
+                    <strong id="balance">
+                        R$ 0,00
+                    </strong>
+
+
+                    <small>
+                        Entradas menos gastos
+                    </small>
+
+
+                </article>
+
+
+
+                <!-- ENTRADAS -->
+
+                <article class="summary-card">
+
+
+                    <div class="card-top">
+
+                        <span>
+                            Entradas
+                        </span>
+
+
+                        <span class="pill income">
+                            ↑
+                        </span>
+
+                    </div>
+
+
+                    <strong id="income">
+                        R$ 0,00
+                    </strong>
+
+
+                    <small>
+                        Total recebido
+                    </small>
+
+
+                </article>
+
+
+
+                <!-- GASTOS -->
+
+                <article class="summary-card">
+
+
+                    <div class="card-top">
+
+                        <span>
+                            Gastos
+                        </span>
+
+
+                        <span class="pill expense">
+                            ↓
+                        </span>
+
+                    </div>
+
+
+                    <strong id="expense">
+                        R$ 0,00
+                    </strong>
+
+
+                    <small>
+                        Total gasto
+                    </small>
+
+
+                </article>
+
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 INSIGHT
+            ================================================== -->
+
+            <section class="content-grid">
+
+
+                <article class="panel insight-panel">
+
+
+                    <span class="eyebrow">
+                        SEU MOMENTO
+                    </span>
+
+
+                    <h2 id="insightTitle">
+                        Comece registrando.
+                    </h2>
+
+
+                    <p id="insightText">
+                        Adicione sua primeira movimentação
+                        para começar a enxergar seu dinheiro
+                        com mais clareza.
+                    </p>
+
+
+                    <div class="line-art">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+
+                </article>
+
+
+            </section>
+
+
+        </section>
+
+
+
+        <!-- ==================================================
+             MOVIMENTAÇÕES
+        ================================================== -->
+
+        <section
+            id="movimentacoes"
+            class="page-section hidden"
+        >
+
+
+            <header class="topbar">
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        ATIVIDADE
+                    </span>
+
+
+                    <h1>
+                        Movimentações
+                    </h1>
+
+
+                </div>
+
+
+                <button
+                    id="openModalMovimentacoes"
+                    class="add-btn"
+                >
+
+                    + Nova movimentação
+
+                </button>
+
+
+            </header>
+
+
+
+            <section class="content-grid">
+
+
+                <article
+                    class="panel transactions-panel"
+                >
+
+
+                    <div class="panel-head">
+
+
+                        <div>
+
+                            <span class="eyebrow">
+                                HISTÓRICO
+                            </span>
+
+
+                            <h2>
+                                Todas as movimentações
+                            </h2>
+
+                        </div>
+
+
+                        <!-- FILTRO -->
+
+                        <select id="filter">
+
+                            <option value="all">
+                                Todas
+                            </option>
+
+
+                            <option value="income">
+                                Entradas
+                            </option>
+
+
+                            <option value="expense">
+                                Gastos
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- LISTA -->
+
+                    <div
+                        id="transactions"
+                        class="transactions"
+                    >
+
+                        <div class="empty">
+                            Carregando...
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+            </section>
+
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CATEGORIAS
+        ================================================== -->
+
+      <!-- ==============================
+     CATEGORIAS
+============================== -->
+
+<section id="categorias" class="page-section hidden">
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <span class="eyebrow">ORGANIZAÇÃO</span>
+
+                <h2>Categorias</h2>
+
+                <p>
+                    Veja quanto você está gastando em cada categoria.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- GRÁFICO REDONDO -->
+
+        <div class="category-chart-panel">
+
+            <div class="category-chart-header">
+
+                <div>
+                    <span class="eyebrow">
+                        DISTRIBUIÇÃO
+                    </span>
+
+                    <h3>
+                        Gastos por categoria
+                    </h3>
+
+                    <p>
+                        Veja onde seu dinheiro está sendo mais utilizado.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="category-chart-content">
+
+
+                <!-- DONUT -->
+
+                <div class="category-donut-wrap">
+
+                    <div
+                        id="categoryDonut"
+                        class="category-donut"
+                    >
+
+                        <div class="category-donut-center">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="categoryDonutTotal">
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LEGENDA -->
+
+                <div
+                    id="categoryLegend"
+                    class="category-legend"
+                >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- LISTA DAS CATEGORIAS -->
+
+        <div
+            id="categoriesList"
+            class="categories-list"
+        >
+
+            <div class="empty">
+                Nenhuma movimentação encontrada.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- ==================================================
+             RELATÓRIOS
+        ================================================== -->
+
+        <section
+            id="relatorios"
+            class="page-section hidden"
+        >
+
+            <header class="topbar">
+
+                <div>
+                    <span class="eyebrow">
+                        ANÁLISE
+                    </span>
+
+                    <h1>
+                        Relatórios
+                    </h1>
+
+                    <p class="report-subtitle">
+                        Entenda como seu dinheiro está se comportando ao longo dos meses.
+                    </p>
+                </div>
+
+                <div class="report-filter-wrap">
+                    <label for="reportPeriod">Período</label>
+                    <select id="reportPeriod" class="report-period">
+                        <option value="3">Últimos 3 meses</option>
+                        <option value="6" selected>Últimos 6 meses</option>
+                        <option value="12">Últimos 12 meses</option>
+                    </select>
+                </div>
+
+            </header>
+
+            <section class="report-summary-grid">
+
+                <article class="report-summary-card report-income">
+                    <span>Entradas do período</span>
+                    <strong id="reportIncome">R$ 0,00</strong>
+                    <small>Todo dinheiro recebido</small>
+                </article>
+
+                <article class="report-summary-card report-expense">
+                    <span>Gastos do período</span>
+                    <strong id="reportExpense">R$ 0,00</strong>
+                    <small>Total de despesas</small>
+                </article>
+
+                <article class="report-summary-card report-balance">
+                    <span>Saldo do período</span>
+                    <strong id="reportBalance">R$ 0,00</strong>
+                    <small>Entradas menos gastos</small>
+                </article>
+
+            </section>
+
+            <section class="report-content-grid">
+
+                <article class="panel report-chart-panel">
+
+                    <div class="panel-head">
+                        <div>
+                            <span class="eyebrow">
+                                EVOLUÇÃO
+                            </span>
+
+                            <h2>
+                                Entradas x gastos
+                            </h2>
+
+                            <p>
+                                Compare seus valores mês a mês.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="report-legend">
+                        <span>
+                            <i class="legend-dot income"></i>
+                            Entradas
+                        </span>
+
+                        <span>
+                            <i class="legend-dot expense"></i>
+                            Gastos
+                        </span>
+                    </div>
+
+                    <div id="monthlyReport" class="monthly-report">
+                        <div class="empty">
+                            Carregando relatório...
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="panel report-insight-panel">
+
+                    <span class="eyebrow">
+                        RESUMO
+                    </span>
+
+                    <h2 id="reportInsightTitle">
+                        Seus números
+                    </h2>
+
+                    <p id="reportInsightText">
+                        Registre movimentações para começar a visualizar seus relatórios.
+                    </p>
+
+                    <div class="report-stat">
+                        <span>Maior gasto do período</span>
+                        <strong id="reportLargestExpense">R$ 0,00</strong>
+                    </div>
+
+                    <div class="report-stat">
+                        <span>Mês com maior gasto</span>
+                        <strong id="reportBestExpenseMonth">—</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL DE NOVA MOVIMENTAÇÃO
+================================================== -->
+
+<div
+    id="modal"
+    class="modal hidden"
+>
+
+
+    <div class="modal-card">
+
+
+        <!-- FECHAR -->
+
+        <button
+            id="closeModal"
+            class="close"
+        >
+            ×
+        </button>
+
+
+        <span class="eyebrow">
+            NOVA MOVIMENTAÇÃO
+        </span>
+
+
+        <h2>
+            Registre o que aconteceu.
+        </h2>
+
+
+
+        <!-- FORMULÁRIO -->
+
+        <form id="transactionForm">
+
+
+            <!-- TIPO -->
+
+            <div class="type-toggle">
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="type"
+                        value="income"
+                        checked
+                    >
+
+
+                    <span>
+                        Entrada
+                    </span>
+
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="type"
+                        value="expense"
+                    >
+
+
+                    <span>
+                        Gasto
+                    </span>
+
+
+                </label>
+
+
+            </div>
+
+
+
+            <!-- DESCRIÇÃO -->
+
+            <label>
+
+                Descrição
+
+
+                <input
+                    id="description"
+                    required
+                    placeholder="Ex.: Salário, mercado, transporte..."
+                >
+
+            </label>
+
+
+
+            <!-- VALOR -->
+
+            <label>
+
+                Valor
+
+
+                <input
+                    id="amount"
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    required
+                    placeholder="0,00"
+                >
+
+            </label>
+
+
+
+            <!-- CATEGORIA -->
+
+            <label>
+
+                Categoria
+
+
+                <select id="category">
+
+
+                    <option>
+                        Salário
+                    </option>
+
+
+                    <option>
+                        Alimentação
+                    </option>
+
+
+                    <option>
+                        Transporte
+                    </option>
+
+
+                    <option>
+                        Moradia
+                    </option>
+
+
+                    <option>
+                        Lazer
+                    </option>
+
+
+                    <option>
+                        Saúde
+                    </option>
+
+
+                    <option>
+                        Educação
+                    </option>
+
+
+                    <option>
+                        Compras
+                    </option>
+
+
+                    <option>
+                        Outros
+                    </option>
+
+
+                </select>
+
+
+            </label>
+
+
+
+            <!-- DATA -->
+
+            <label>
+
+                Data
+
+
+                <input
+                    id="date"
+                    type="date"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- SALVAR -->
+
+            <button
+                class="primary-btn"
+                type="submit"
+            >
+
+                Salvar movimentação
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+
+            <!-- MENSAGEM -->
+
+            <p
+                id="formMessage"
+                class="message"
+            ></p>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     SCRIPTS
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+
+
+<!-- ==================================================
+     NAVEGAÇÃO
+================================================== -->
+
+<script>
+    const navItems = document.querySelectorAll('.nav-item');
+    const pageSections = document.querySelectorAll('.page-section');
+
+    navItems.forEach((item) => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const sectionId = item.dataset.section;
+
+            navItems.forEach((nav) => {
+                nav.classList.remove('active');
+            });
+
+            item.classList.add('active');
+
+            pageSections.forEach((section) => {
+                section.classList.add('hidden');
+            });
+
+            const selectedSection = document.getElementById(sectionId);
+
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

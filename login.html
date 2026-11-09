@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Grana Alinhada — Entrar</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/auth.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <main class="auth-shell">
+
+
+        <!-- =================================
+             LADO ESQUERDO
+        ================================== -->
+
+        <section class="auth-hero">
+
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <span class="brand-mark">
+                    G
+                </span>
+
+                <span>
+                    GRANA ALINHADA
+                </span>
+
+            </a>
+
+
+
+            <div class="hero-copy">
+
+
+                <span class="eyebrow">
+                    FINANÇAS, SEM BAGUNÇA.
+                </span>
+
+
+                <h1>
+
+                    Seu dinheiro,
+
+                    <br>
+
+                    <em>
+                        linha por linha.
+                    </em>
+
+                </h1>
+
+
+                <p>
+
+                    Uma visão simples para entender o que entra,
+                    o que sai e para onde seu dinheiro está indo.
+
+                </p>
+
+
+                <div class="hero-points">
+
+                    <div>
+                        <span>01</span>
+                        <p>Organize suas movimentações.</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>Acompanhe seus gastos.</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>Tenha mais clareza.</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="hero-footer">
+
+                <span>
+                    Grana Alinhada
+                </span>
+
+                <span>
+                    Seu dinheiro, linha por linha.
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             LADO DIREITO
+        ================================== -->
+
+        <section class="auth-panel">
+
+
+            <div class="auth-card">
+
+
+                <div class="mobile-brand">
+
+                    <span class="brand-mark">
+                        G
+                    </span>
+
+                    GRANA ALINHADA
+
+                </div>
+
+
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        data-tab="login"
+                        type="button"
+                    >
+                        Entrar
+                    </button>
+
+
+                    <button
+                        class="tab"
+                        data-tab="register"
+                        type="button"
+                    >
+                        Criar conta
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     LOGIN
+                ================================== -->
+
+                <div
+                    id="login-form"
+                    class="form-view active"
+                >
+
+
+                    <span class="eyebrow">
+                        BEM-VINDO DE VOLTA
+                    </span>
+
+
+                    <h2>
+                        Vamos colocar a casa em ordem.
+                    </h2>
+
+
+                    <p class="muted">
+                        Entre para acessar sua visão financeira.
+                    </p>
+
+
+
+                    <form id="loginForm">
+
+
+                        <label>
+
+                            <span>
+                                E-mail
+                            </span>
+
+                            <input
+                                id="loginEmail"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="voce@email.com"
+                                required
+                            >
+
+                        </label>
+
+
+
+                        <label>
+
+                            <span>
+                                Senha
+                            </span>
+
+                            <div class="password-field">
+
+                                <input
+                                    id="loginPassword"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    placeholder="••••••••"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="loginPassword"
+                                    aria-label="Mostrar senha"
+                                >
+                                    Mostrar
+                                </button>
+
+                            </div>
+
+                        </label>
+
+
+
+                        <div class="form-options">
+
+                            <a
+                                href="#"
+                                id="forgotPassword"
+                                class="forgot-password"
+                            >
+                                Esqueci minha senha
+                            </a>
+
+                        </div>
+
+
+
+                        <button
+                            class="primary-btn"
+                            type="submit"
+                        >
+
+                            Entrar
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     CADASTRO
+                ================================== -->
+
+                <div
+                    id="register-form"
+                    class="form-view"
+                >
+
+
+                    <span class="eyebrow">
+                        COMECE AGORA
+                    </span>
+
+
+                    <h2>
+                        Seu dinheiro merece clareza.
+                    </h2>
+
+
+                    <p class="muted">
+                        Crie sua conta e comece a registrar
+                        suas movimentações.
+                    </p>
+
+
+
+                    <form id="registerForm">
+
+
+                        <label>
+
+                            <span>
+                                Nome
+                            </span>
+
+                            <input
+                                id="registerName"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Seu nome"
+                                required
+                            >
+
+                        </label>
+
+
+
+                        <label>
+
+                            <span>
+                                E-mail
+                            </span>
+
+                            <input
+                                id="registerEmail"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="voce@email.com"
+                                required
+                            >
+
+                        </label>
+
+
+
+                        <label>
+
+                            <span>
+                                Senha
+                            </span>
+
+                            <div class="password-field">
+
+                                <input
+                                    id="registerPassword"
+                                    type="password"
+                                    autocomplete="new-password"
+                                    placeholder="Mínimo de 6 caracteres"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="registerPassword"
+                                    aria-label="Mostrar senha"
+                                >
+                                    Mostrar
+                                </button>
+
+                            </div>
+
+                        </label>
+
+
+
+                        <button
+                            class="primary-btn"
+                            type="submit"
+                        >
+
+                            Criar conta
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- MENSAGEM -->
+
+                <p
+                    id="authMessage"
+                    class="message"
+                ></p>
+
+
+                <div class="auth-security">
+
+                    <span class="security-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Seus dados ficam vinculados à sua conta.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Voltar para o início
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- SUPABASE -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <script src="js/supabase.js"></script>
+
+    <script src="js/auth.js"></script>
+
+
+</body>
+
+</html>
